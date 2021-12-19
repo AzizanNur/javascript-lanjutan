@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //cara untuk membuat object pada javascript
+        //1. object literal
+        // let mahasiswa = {
+        //     nama: "azizan nur rohman", //properti isinya nilai
+        //     energi: 10,
+        //     makan: function(porsi){ //method isinya function
+        //         this.energi = this.energi + porsi;
+        //         console.log(`halo ${this.nama}, selamat makan`);
+        //     } 
+        // }
+        
+        // let mahasiswa2 = {
+        //     nama: "azizan nur rohman", //properti isinya nilai
+        //     energi: 10,
+        //     makan: function(porsi){ //method isinya function
+        //         this.energi = this.energi + porsi;
+        //         console.log(`halo ${this.nama}, selamat makan`);
+        //     } 
+        // }
+        //kekurangannya kalau nambah mahasiswa kita harus menggunakan nama variabel yang berbeda ex. let mahasiswa1, mahasiswa2 dan seterusnya
+        
+        //======================================================
+
+        // 2. Function Declaration
+        // keuntunggannya tidak perlu membuat duplikat dari objeknya, kita cuman tinggal buat templatenya(function) lalu pangil di instansiasinya saja
+        // ex template function
+        // function Mahasiswa(nama, energi){
+        //     let mahasiswa = {}; //objeck kosong
+        //     mahasiswa.nama = nama;
+        //     mahasiswa.energi = energi;
+        //     mahasiswa.makan = function(porsi){
+        //         this.energi += porsi
+        //         console.log(`halo ${this.nama}, selamat makan`);
+        //     }
+        //     mahasiswa.main = function(jam){
+        //         this.energi -= jam
+        //         console.log(`halo ${this.nama}, energi kamu berkurang karena main`)
+        //     }
+        //     return mahasiswa;
+        // }
+        // ex end template function
+
+        //ex instansiasi
+        // let azizan = Mahasiswa('azizan', 10);
+        // let azhar  = Mahasiswa('azhar', 20);
+        //ex end instansiasi
+
+        //======================================================
+        //3. Constructro function
+        // keyword 'new' 
+        //sama dengan function declaration cuman bedanya, di constructor function tidak ada returnya, cuman ada new sebagai returnya
+
+        // ex template function
+        function Mahasiswa(nama, energi){
+            this.nama = nama;
+            this.energi = energi;
+            this.makan = function(porsi){
+                this.energi += porsi
+                console.log(`halo ${this.nama}, selamat makan dari custructor function`);
+            }
+            this.main = function(jam){
+                this.energi -= jam
+                console.log(`halo ${this.nama}, energi kamu berkurang karena main dari custructor function`)
+            }            
+        }
+        // ex end template function
+
+        //ex instansiasi
+        let azizan = new Mahasiswa('azizan', 10);
+        let azhar  = new Mahasiswa('azhar', 20);
+        //ex end instansiasi
+        
+    </script>
+</body>
+</html>

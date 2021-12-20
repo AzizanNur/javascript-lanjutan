@@ -2,6 +2,7 @@ javascript lanjutan
 
 /cara untuk membuat object pada javascript
 //1. object literal
+//problem: tidak efektif untuk objeck yang banyak
 // let mahasiswa = {
 //     nama: "azizan nur rohman", //properti isinya nilai
 //     energi: 10,
@@ -71,3 +72,23 @@ function Mahasiswa(nama, energi){
 let azizan = new Mahasiswa('azizan', 10);
 let azhar  = new Mahasiswa('azhar', 20);
 //ex end instansiasi
+
+//=========================================================
+4. Object.create
+//object.crate
+        const methodeMahasiswa={
+            makan: function(porsi){
+                this.energi += porsi;
+                console.log(`halo ${this.nama}, selamat makan`);
+            }
+        }
+        function Mahasiswa(nama, energi){
+            let mahasiswa = Object.create(methodeMahasiswa); //object create ini menggunakan semua properti dari methodeMahasiswa, sehingga tidak perlu di daftarkan satu-satu di function mahasiwa
+            mahasiswa.nama = nama;
+            mahasiswa.energi = energi; 
+            
+            // mahasiswa.makan = methodeMahasiswa.makan(2) //dengan adanya object.create menjadikan ini tidak perlu lagi, karena sudah di inisiasi dan propertinya sudah dibawa didalam object.create(methodMahasiswa);
+            return mahasiswa;       
+        }
+        var aziz = Mahasiswa('azizan', 50);
+//========================================================

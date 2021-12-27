@@ -92,3 +92,50 @@ let azhar  = new Mahasiswa('azhar', 20);
         }
         var aziz = Mahasiswa('azizan', 50);
 //========================================================
+
+prototype
+        //sebuah pewarisan dari sebuah function
+        //dan ini sudah ada didefault sistem javascript nya, dan berjalan dibalik layar
+        //contohya adalah seperti ini
+
+        // function Mahasiswa(nama, energi){
+        //     this.nama = nama;
+        //     this.energi = energi;
+        // }
+        
+        // // untuk mengambil semua isi pewarisan dari function mahasiswa dengan properti nama, energi maka dibuatlah prototype nya
+
+        // Mahasiswa.prototype.makan = function(porsi){
+        //     this.energi += porsi;
+        //     return this.energi;
+        // }
+
+        // Mahasiswa.prototype.main = function(jam){
+        //     this.energi -= jam;
+        //     return this.energi;
+        // }
+
+        // let azizan = new Mahasiswa('azizan', 10);
+
+        //prototype ini sama dengan class yang ada di php bertipe oop, kita bisa menggunakan class agar lebih simpel untuk dibaca
+        //padahal dibalik layar yang berjalan adalah prototype nya
+        //baiklah ini adalah cara pemakaian class
+
+        class Mahasiswa{
+            constructor(nama, energi){
+                this.nama = nama;
+                this.energi = energi;
+            }
+
+            makan(porsi){
+                this.energi += porsi;
+                return `Halo ${this.nama}, selamat makan`;
+            }
+
+            main(jam){
+                this.energi -= porsi;
+                return `Halo ${this.nama}, kamu lagi main kan?`;
+            }
+        }
+
+        let azhar = new Mahasiswa('azhar', '80');

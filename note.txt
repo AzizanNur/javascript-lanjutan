@@ -116,6 +116,8 @@ prototype
         // }
 
         // let azizan = new Mahasiswa('azizan', 10);
+	// azizan.makan(2);
+	// azizan.main(1);
 
         //prototype ini sama dengan class yang ada di php bertipe oop, kita bisa menggunakan class agar lebih simpel untuk dibaca
         //padahal dibalik layar yang berjalan adalah prototype nya
@@ -139,3 +141,17 @@ prototype
         }
 
         let azhar = new Mahasiswa('azhar', '80');
+
+===============================================================================================================
+
+Closuer
+<script>
+        function init(){
+            var nama = "azizan"; //local variabel (ini berada di parent function yang bisa dipanggil didalam scope lexical atau scope function ini sendiri)
+            function tampilNama(){ //inner function (closuer*)
+                console.log(nama);//akses ke parent variable
+            }
+            tampilNama();
+        }
+        init();
+    </script>   

@@ -145,13 +145,76 @@ prototype
 ===============================================================================================================
 
 Closuer
-<script>
-        function init(){
-            var nama = "azizan"; //local variabel (ini berada di parent function yang bisa dipanggil didalam scope lexical atau scope function ini sendiri)
-            function tampilNama(){ //inner function (closuer*)
-                console.log(nama);//akses ke parent variable
-            }
-            tampilNama();
-        }
-        init();
-    </script>   
+<<script>
+        //ini default closuse
+        // function init(){
+        //     var nama = "azizan"; //local variabel (ini berada di parent function yang bisa dipanggil didalam scope lexical atau scope function ini sendiri)
+        //     function tampilNama(){ //inner function (closuer*)
+        //         console.log(nama);//akses ke parent variable
+        //     }
+        //     tampilNama();
+        // }
+        // init();
+
+        //return closuer
+        // function init(){
+        //     function tampilNama(nama){
+        //         console.log(nama);
+        //     }
+        //     return tampilNama;
+        // }
+        // var panggilNama = init();
+        // panggilNama('azkia zeline');
+
+        //penggunakan function anonymouse closer dalam function factiories
+        // function init(){
+        //     return function(nama){
+        //         console.log(nama);
+        //     }             
+        // }
+        // var panggilNama = init();
+        // panggilNama('azhar azizan');
+
+        //penggunakan private method
+
+        //console.dir(panggilNama);   //melihat factiories function
+        //kenapa menggunakan closuer
+        //1. untuk membuat function factories
+        //2. untuk membuat private method
+
+        //sejatinya kita tidak perlu menampung function dalam variabel seperti
+        // var panggilNama = init();
+        //kemudian di panggil seperti ini
+        // panggilNama('azhar azizan'); 
+        //cukup kita gunakan bungkus dalam imidietly enable function
+        //contoh
+        
+        //1
+        // let namaku = (function init(){
+        //     return function(nama){
+        //         console.log(nama);
+        //     }             
+        // })();
+        // namaku('ini azizan');
+
+        //2.
+        // var salam = (function(){
+        //     return function(nama){
+        //         console.log(`halo ${nama}, selamat pagi`);
+        //     }
+        // })();
+        // salam('azizan');
+
+        //3. function dengan private method
+        var counter = 0;
+        var data = function(){
+            return ++counter;            
+        };
+
+        counter = 10;
+        console.log(data());               
+        console.log(data());               
+        console.log(data());  
+        //return 11, 12, 13 krn tergnggu vae lainnya              
+
+    </script>    

@@ -144,8 +144,7 @@ prototype
 
 ===============================================================================================================
 
-Closuer
-<<script>
+<script>
         //ini default closuse
         // function init(){
         //     var nama = "azizan"; //local variabel (ini berada di parent function yang bisa dipanggil didalam scope lexical atau scope function ini sendiri)
@@ -206,15 +205,15 @@ Closuer
         // salam('azizan');
 
         //3. function dengan private method
-        var counter = 0;
-        var data = function(){
-            return ++counter;            
-        };
-
-        counter = 10;
+        var data = (function(){
+            let counter = 0;
+            return function(){
+                return ++counter; 
+            }                       
+        })();
+        counter = 10; //variable ini tidak akan menganggu lainnnya
         console.log(data());               
         console.log(data());               
         console.log(data());  
-        //return 11, 12, 13 krn tergnggu vae lainnya              
-
-    </script>    
+        //return 11, 12, 13 krn tergnggu vae lainnya 
+    </script>   

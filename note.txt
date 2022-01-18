@@ -217,3 +217,16 @@ prototype
         console.log(data());  
         //return 11, 12, 13 krn tergnggu vae lainnya 
     </script>   
+    
+    =======================================================================
+    
+    //function arrow 
+	// var tampilNama = (nama) => { return `halo ${nama} ini adalah function arrow` ; }
+	// console.log(tampilNama('azizan'));
+
+	//arrow function
+	let tampilNama = ['azizan', 'azhar', 'zeline'];
+	let jumlahNama = tampilNama.map(nama => ({nama: nama, jmlHuruf: nama.length}));
+	console.table(jumlahNama);
+    
+    

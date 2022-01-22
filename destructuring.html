@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //object mahasiswa
+        const mhs = {
+            nama: 'Azizan Nur Rohman',
+            umur: '32',
+            nilai:{
+                uts: 80,
+                uas: 85,
+                tugas: 90
+            }
+        }
+
+        function cetakMahasiswa({nama, umur, nilai: {uts, uas, tugas}}){
+            return `Halo Nama Saya Adalah ${nama}, dan umur saya adalah ${umur}, 
+                    untuk tugas saya nilainya adalah ${uts}`;
+        }
+
+        console.log(cetakMahasiswa(mhs));
+    </script>
+</body>
+</html>

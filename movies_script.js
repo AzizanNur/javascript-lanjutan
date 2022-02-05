@@ -31,7 +31,7 @@
 
 //dengan vanila js
 //feth()
-
+/*
 const btnSearch = document.querySelector(".search-bottom");
 btnSearch.addEventListener('click', function(){
     const isKeyword = document.querySelector(".keyword-search").value;
@@ -62,6 +62,31 @@ btnSearch.addEventListener('click', function(){
     });
     
 });
+*/
+//dengan async - await
+
+const btnSearch = document.querySelector(".search-bottom");
+btnSearch.addEventListener('click', async function(){
+    const isKeyword  = document.querySelector(".keyword-search").value;
+    const dataMovies = await getMovies(isKeyword);   
+    updateUi(dataMovies);
+});
+
+function getMovies(isKeyword){
+    return fetch('http://www.omdbapi.com/?apikey=dca61bcc&s='+isKeyword)
+    .catch(() => document.querySelector(".cards").innerHTML = 'Film Tidak Ada')
+    .then(response => response.json())
+    .then(response => response.Search);
+}
+
+function updateUi(movies){
+    let cards = '';
+    movies.forEach(v => {
+        cards += getCards(v);
+    }); 
+    const cardsIn = document.querySelector(".cards");
+    cardsIn.innerHTML = cards;
+}
 
 function getCards(v){
     return `<div class="col-md-4 my-5">
@@ -93,6 +118,25 @@ function getDetail(m){
                      </ul>
              </div>
          </div>
-     </div>
-             `
+     </div>`
+}
+
+document.addEventListener('click', async function(e){
+    if(e.target.classList.contains('videoDetail')){
+        const dataMovies = e.target.dataset.imdbid;
+        const dataDetail = await getDataMovie(dataMovies);
+        updateUIModal(dataDetail);
+    }
+});
+
+function getDataMovie(dataMovies){
+    return fetch("http://www.omdbapi.com/?apikey=dca61bcc&i="+dataMovies)
+                .then(r => r.json())
+                .then(r => r);
+}
+
+function updateUIModal(v){
+    let detailVideo = getDetail(v);
+    const isModal = document.querySelector('.modalDetail');
+    isModal.innerHTML = detailVideo;
 }

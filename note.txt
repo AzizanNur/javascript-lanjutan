@@ -259,7 +259,7 @@ prototype
 //parentNode.removeChild()
 //parentNode.replaceChild()
 
-
+//appendchild
 const pBaru = document.createElement('p');
 const textBaru = document.createTextNode('Paragraf Baru');
 pBaru.appendChild(textBaru);
@@ -267,11 +267,25 @@ pBaru.classList.add("p5");
 const sectionA = document.getElementById('a');
 sectionA.appendChild(pBaru);
 
+//remove dan insertbefore
 const liBaru = document.createElement('li');
 const textLiBaru = document.createTextNode('Item Baru');
 liBaru.appendChild(textLiBaru);
 const ul = document.querySelector("section#b ul");
 const li = ul.querySelector("li:nth-child(3)");
 ul.insertBefore(liBaru, li);
+
+const pSec = document.querySelector("section#a a");
+sectionA.removeChild(pSec);
+
+//replace
+const sectionB = document.getElementById('b');
+const p4 = sectionB.querySelector("p");
+const h2 = document.createElement('h2');
+const h2baru = document.createTextNode('ini judul baru');
+h2.appendChild(h2baru);
+sectionB.replaceChild(h2, p4);
+
+
 
     

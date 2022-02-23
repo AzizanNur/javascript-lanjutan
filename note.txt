@@ -249,5 +249,29 @@ prototype
         }
 
         console.log(cetakMahasiswa(mhs));
-    
+
+================================================
+
+//document.createElement()
+//document.createTextNode()
+//node.appendChild()
+//node.insertBefore()
+//parentNode.removeChild()
+//parentNode.replaceChild()
+
+
+const pBaru = document.createElement('p');
+const textBaru = document.createTextNode('Paragraf Baru');
+pBaru.appendChild(textBaru);
+pBaru.classList.add("p5");
+const sectionA = document.getElementById('a');
+sectionA.appendChild(pBaru);
+
+const liBaru = document.createElement('li');
+const textLiBaru = document.createTextNode('Item Baru');
+liBaru.appendChild(textLiBaru);
+const ul = document.querySelector("section#b ul");
+const li = ul.querySelector("li:nth-child(3)");
+ul.insertBefore(liBaru, li);
+
     

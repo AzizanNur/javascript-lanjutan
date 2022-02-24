@@ -297,6 +297,94 @@ pargf4.addEventListener('click', function(){
     console.log(parentUl); 
 });
 
+//bermain dengan warna
+==================================================================================================================================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bermain dengan warna</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        .lightgreen {
+            background-color: lightgreen;
+        }
+        .kotak{
+            height: 25px;
+            width: 25px;
+            margin: 10px auto;
+        }
+        .merah {background-color: red;}
+        .hijau {background-color: green;}
+        .biru {background-color: blue;}
+    </style>
+</head>
+<body>
+    <h1>Bermain dengan warna</h1>
+    <button type="button" class="hijau">hijau</button>
+
+    <p></p>
+    <div class="kotak merah"></div>
+    <input type="range" min="0" max="255" name="sMerah">
+
+    <div class="kotak hijau"></div>
+    <input type="range" min="0" max="255" name="sHijau">
+
+    <div class="kotak biru"></div>
+    <input type="range" min="0" max="255" name="sBiru">
+    <script> 
+        const hijauBottom = document.querySelector('.hijau');
+        hijauBottom.addEventListener('click', function(){
+            const body = document.querySelector('body');
+            body.classList.toggle('lightgreen');
+        });   
+        
+        const tAcak = document.createElement('button');
+        const tAcakWarna = document.createTextNode('Acak Warna');
+        tAcak.appendChild(tAcakWarna);
+        tAcak.setAttribute("type", "button");
+        hijauBottom.after(tAcak);
+
+        tAcak.addEventListener('click', function(){
+            const r = Math.random() * 255 + 1;
+            const g = Math.random() * 255 + 1;
+            const b = Math.random() * 255 + 1;
+            document.body.style.backgroundColor = `rgb(${r},${g},${b})`;
+        });
+
+        //range
+        const merahRange = document.querySelector("input[name=sMerah]");
+        merahRange.addEventListener("input", function(){
+            const r = merahRange.value;
+            const g = hijauRange.value;
+            const b = biruRange.value;
+            document.body.style.backgroundColor = `rgb(${r},${g},${b})`;
+        });
+        
+        const hijauRange = document.querySelector("input[name=sHijau]");
+        hijauRange.addEventListener("input", function(){
+            const r = merahRange.value;
+            const g = hijauRange.value;
+            const b = biruRange.value;
+            document.body.style.backgroundColor = `rgb(${r},${g},${b})`;
+        });
+
+        const biruRange = document.querySelector("input[name=sBiru]");
+        biruRange.addEventListener("input", function(){
+            const r = merahRange.value;
+            const g = hijauRange.value;
+            const b = biruRange.value;
+            document.body.style.backgroundColor = `rgb(${r},${g},${b})`;
+        });
+
+    </script>
+</body>
+</html>
 
 
     

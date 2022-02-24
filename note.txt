@@ -286,6 +286,17 @@ const h2baru = document.createTextNode('ini judul baru');
 h2.appendChild(h2baru);
 sectionB.replaceChild(h2, p4);
 
+//// addEventListener
+const pargf4 = document.querySelector(".p4");
+pargf4.addEventListener('click', function(){
+    const parentUl = document.querySelector("section#b ul");
+    const liBaru = document.createElement("li");
+    const liBaruAdd = document.createTextNode("Element Baru");
+    liBaru.appendChild(liBaruAdd);
+    parentUl.appendChild(liBaru);
+    console.log(parentUl); 
+});
+
 
 
     

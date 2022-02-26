@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>galery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            line-height: 0;            
+        }
+
+        body{
+            background-color: #acc;
+            text-align: center;
+        }
+
+        .container{
+            width: 600px;
+            margin: 10px auto;
+            border: 5px solid white;
+            overflow: auto;
+        }
+
+        .tumbn{
+            width: 200px;
+            float: left;
+            border:2px solid white;
+            box-sizing: border-box;
+        }
+
+        .tumbn:hover{
+            opacity: 0.5;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn{
+            to{
+                opacity: 1;
+            }
+        }
+
+        .fade{
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        .activated {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="img/1.jpg" class="jumbo">
+        <div class="thumbnail">
+            <img src="img/1.jpg" class="tumbn">
+            <img src="img/2.jpg" class="tumbn">
+            <img src="img/3.jpg" class="tumbn">
+            <img src="img/4.jpg" class="tumbn">
+            <img src="img/5.jpg" class="tumbn">
+            <img src="img/6.jpg" class="tumbn">
+        </div>
+    </div>
+
+    <script>
+        const container = document.querySelector(".container");
+        const jumboImg  = document.querySelector(".jumbo");
+        const tumnbAll  = document.querySelectorAll(".tumbn");
+        container.addEventListener("click", function(e){
+            if(e.target.className == 'tumbn'){
+                const image = e.target.attributes.src.value;
+                jumboImg.attributes.src.value = image;
+                jumboImg.classList.add('fade');
+                setTimeout(function(){
+                    jumboImg.classList.remove('fade');
+                }, 500);
+                
+                //remove activated
+                tumnbAll.forEach(e => {
+                    if(e.classList.contains('activated')){
+                        e.classList.remove('activated');                        
+                    }
+                });
+                e.target.classList.add('activated');
+
+            }
+        });
+    </script>
+</body>
+</html>

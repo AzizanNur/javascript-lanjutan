@@ -386,5 +386,24 @@ pargf4.addEventListener('click', function(){
 </body>
 </html>
 
+====================================================================
+
+const getCard = document.querySelectorAll('.card');
+    getCard.forEach(function(el){
+        el.addEventListener('click', function(e){
+            e.target.parentElement.style.display = "none";            
+        });
+    });
+
+    //dome traversal
+    // - parentNode = mengambil parent div tapi dengan Node
+    // - parentElement = mengambil parent div dengan langsung bentuk Element
+    // - nextSibling = mengambil saudaranya satu parent bentuknya node
+    // - nextElementSibling = mengambil saudaranya satu parent bentuknya element
+    // - previousSibling = mengambil prev saudaranya bentuknya node
+    // - previousElementSibling = mengmbil prev saudaranya bentuknya element
+   
+=========================================================================
+
 
     

@@ -31,41 +31,32 @@
 
     <script>
         
-        // const myMoney = [100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000];
-        // let pembayaran = function(uangMasuk, hargaBarang){
-        //     this.uangMasuk = uangMasuk;
-        //     this.hargaBarang = hargaBarang;
-        //     this.uangKembalian = this.uangMasuk - this.hargaBarang;
-        //     let uangNya = [];
-        //     myMoney.sort(function(a, b){return b-a});
-        //     myMoney.map(function(v){
+        const myMoney = [100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000];
+        let pembayaran = function(uangMasuk, hargaBarang){
+            this.uangMasuk = uangMasuk;
+            this.hargaBarang = hargaBarang;
+            this.uangKembalian = this.uangMasuk - this.hargaBarang;
+            let uangNya = [];
+            myMoney.sort(function(a, b){return b-a});
+            myMoney.map(function(v){
 
-        //         this.exUangKembalian = this.uangKembalian % v;
-        //         let a = (this.uangKembalian - this.exUangKembalian) / v;
-        //         console.log(this.uangKembalian +'-'+ v + '-' + this.exUangKembalian);
-
-        //         let datab = dataa % 50000;
-        //         let b = (dataa - datab) / 50000;
-
-        //         let datac = datab % 20000;
-        //         let c = (datab - datac) / 20000;
-
-        //         let datad = datac % 5000;
-        //         let d = (datac - datad) / 5000;
+                this.exUangKembalian = this.uangKembalian % v;
+                let a = (this.uangKembalian - this.exUangKembalian) / v;  
+                if(a > 0){
+                    this.uangKembalian = this.exUangKembalian;
+                    for(let i=1; i<=a; i++){
+                        uangNya.push(v); 
+                    }
+                }     
+                // console.log(this.uangKembalian+'-'+a);
                 
-        //         let datae = datad % 100;
-        //         let e = (datad - datae) / 100;
-
-        //         let dataf = datae % 50;
-        //         let f = (datae - dataf) / 50;
-                
-        //     });
-        //     let kembalian = { 
-        //                         'uangKembalian' : this.uangMasuk - this.hargaBarang,
-        //                         'jenisUang' : uangNya
-        //                     };                
-        //     return kembalian;
-        // }
+            });
+            let kembalian = { 
+                                'uangKembalian' : this.uangMasuk - this.hargaBarang,
+                                'jenisUang' : uangNya
+                            };                
+            return kembalian;
+        }
 
         const btnSearch = document.querySelector(".proses-bottom");
         btnSearch.addEventListener("click", function(){

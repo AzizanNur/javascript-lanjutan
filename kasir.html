@@ -25,21 +25,21 @@
             </div>
         </div>
 
-        <div class="tabelKembalian">            
-        </div>
+        <div class="tabelKembalian"></div>
+        <div class="tabelKembalian2"></div>
     </container>
 
     <script>
         
-        const myMoney = [100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000];
-        let pembayaran = function(uangMasuk, hargaBarang){
+        const myMoney = [50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000];
+        let pembayaran = (uangMasuk, hargaBarang, cb) => {
             this.uangMasuk = uangMasuk;
             this.hargaBarang = hargaBarang;
             this.uangKembalian = this.uangMasuk - this.hargaBarang;
             let uangNya = [];
-            myMoney.sort(function(a, b){return b-a});
-            myMoney.map(function(v){
-
+            let liUang = [];
+            myMoney.sort(function(a, b){return b-a})
+            .map(function(v){
                 this.exUangKembalian = this.uangKembalian % v;
                 let a = (this.uangKembalian - this.exUangKembalian) / v;  
                 if(a > 0){
@@ -47,72 +47,99 @@
                     for(let i=1; i<=a; i++){
                         uangNya.push(v); 
                     }
-                }     
-                // console.log(this.uangKembalian+'-'+a);
-                
+                    liUang.push(`<li>${v}: <span>${a}</span></li>`);
+                }else{
+                    liUang.push(`<li>${v}: <span>${a}</span></li>`);
+                }
             });
-            let kembalian = { 
-                                'uangKembalian' : this.uangMasuk - this.hargaBarang,
-                                'jenisUang' : uangNya
-                            };                
-            return kembalian;
+            cb({ 
+                'uangKembalian' : this.uangMasuk - this.hargaBarang,
+                'jenisUang' : uangNya,
+                'html': liUang
+            });               
         }
 
         const btnSearch = document.querySelector(".proses-bottom");
         btnSearch.addEventListener("click", function(){
-            
-            const pembayaran = document.querySelector('.pembayaran').value;
-            const hargaBarang = document.querySelector('.hargaBarang').value;
-            const kembalian = pembayaran - hargaBarang;
-
-            let dataa = kembalian % 100000; 
-            let a = (kembalian - dataa) / 100000;
-
-            let datab = dataa % 50000;
-            let b = (dataa - datab) / 50000;
-
-            let datac = datab % 20000;
-            let c = (datab - datac) / 20000;
-
-            let datad = datac % 10000;
-            let d = (datac - datad) / 10000;
-            
-            let datae = datad % 5000;
-            let e = (datad - datae) / 5000;
-
-            let dataf = datae % 2000;
-            let f = (datae - dataf) / 2000;
-
-            let datag = dataf % 1000;
-            let g = (dataf - datag) / 1000;
-            
-            let datah = datag % 500;
-            let h = (datag - datah) / 500;
-
-            let datai = datah % 200;
-            let i = (datah - datai) / 200;
-
-            let dataj = datai % 100;
-            let j = (datai - dataj) / 100;
-
-            let datak = dataj % 50;
-            let k = (dataj - datak) / 50;
-
-            document.querySelector('.tabelKembalian').innerHTML = `
-                <ul>Kembaliannya Adalah: ${kembalian}
-                    <li>Rp. 100.000: <span class="1">${a}</li>
-                    <li>Rp.  50.000: <span class="2">${b}</li>
-                    <li>Rp.  20.000: <span class="3">${c}</li>
-                    <li>Rp.  10.000: <span class="4">${d}</li>
-                    <li>Rp.   5.000: <span class="5">${e}</li>
-                    <li>Rp.   2.000: <span class="6">${f}</li>
-                    <li>Rp.   1.000: <span class="7">${g}</li>
-                    <li>Rp.     500: <span class="7">${h}</li>
-                    <li>Rp.     200: <span class="7">${i}</li>
-                    <li>Rp.     100: <span class="7">${j}</li>
-                    <li>Rp.      50: <span class="7">${k}</li>
+            const btnPembayaran = document.querySelector('.pembayaran').value;
+            const btnHargaBarang = document.querySelector('.hargaBarang').value;
+            const hasilKasir = pembayaran(btnPembayaran, btnHargaBarang, (hasil) => {
+                //console.log(hasil.html);
+                let liUang = '';
+                for(let i=0;i<hasil.jenisUang.length;i++){
+                    liUang += `<li>${hasil.jenisUang[i]}</li>`;                       
+                } 
+                document.querySelector('.tabelKembalian').innerHTML = `
+                <ul>Kembaliannya Adalah: ${hasil.uangKembalian}
+                    ${liUang}
                 </ul>`;
+
+                let b='';
+                for(let a=0;a<hasil.html.length;a++){
+                    b += hasil.html[a];                       
+                } 
+                document.querySelector('.tabelKembalian2').innerHTML = `
+                <ul>Kembaliannya Adalah: ${hasil.uangKembalian}
+                    ${b}
+                </ul>`;
+            });
         });
+
+        // const btnSearch = document.querySelector(".proses-bottom");
+        // btnSearch.addEventListener("click", function(){
+            
+        //     const pembayaran = document.querySelector('.pembayaran').value;
+        //     const hargaBarang = document.querySelector('.hargaBarang').value;
+        //     const kembalian = pembayaran - hargaBarang;
+
+        //     let dataa = kembalian % 100000; 
+        //     let a = (kembalian - dataa) / 100000;
+
+        //     let datab = dataa % 50000;
+        //     let b = (dataa - datab) / 50000;
+
+        //     let datac = datab % 20000;
+        //     let c = (datab - datac) / 20000;
+
+        //     let datad = datac % 10000;
+        //     let d = (datac - datad) / 10000;
+            
+        //     let datae = datad % 5000;
+        //     let e = (datad - datae) / 5000;
+
+        //     let dataf = datae % 2000;
+        //     let f = (datae - dataf) / 2000;
+
+        //     let datag = dataf % 1000;
+        //     let g = (dataf - datag) / 1000;
+            
+        //     let datah = datag % 500;
+        //     let h = (datag - datah) / 500;
+
+        //     let datai = datah % 200;
+        //     let i = (datah - datai) / 200;
+
+        //     let dataj = datai % 100;
+        //     let j = (datai - dataj) / 100;
+
+        //     let datak = dataj % 50;
+        //     let k = (dataj - datak) / 50;
+
+        //     document.querySelector('.tabelKembalian').innerHTML = `
+        //         <ul>Kembaliannya Adalah: ${kembalian}
+        //             <li>Rp. 100.000: <span class="1">${a}</li>
+        //             <li>Rp.  50.000: <span class="2">${b}</li>
+        //             <li>Rp.  20.000: <span class="3">${c}</li>
+        //             <li>Rp.  10.000: <span class="4">${d}</li>
+        //             <li>Rp.   5.000: <span class="5">${e}</li>
+        //             <li>Rp.   2.000: <span class="6">${f}</li>
+        //             <li>Rp.   1.000: <span class="7">${g}</li>
+        //             <li>Rp.     500: <span class="7">${h}</li>
+        //             <li>Rp.     200: <span class="7">${i}</li>
+        //             <li>Rp.     100: <span class="7">${j}</li>
+        //             <li>Rp.      50: <span class="7">${k}</li>
+        //         </ul>`;
+        // });
     </script>
 </body>
 </html>

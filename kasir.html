@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasir HTML</title>
+</head>
+<body>
+
+    <container>
+        <div class="row mt-5">
+            <div class="col">
+                <h1>Pembayaran Kasir</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control pembayaran" placeholder="Pembayaran...">
+                    <input type="text" class="form-control hargaBarang" placeholder="Harga Barang...">
+                    <button class="btn btn-primary proses-bottom" type="button" id="proses">Proses</button>
+                  </div>
+            </div>
+        </div>
+
+        <div class="tabelKembalian">            
+        </div>
+    </container>
+
+    <script>
+        
+        // const myMoney = [100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000];
+        // let pembayaran = function(uangMasuk, hargaBarang){
+        //     this.uangMasuk = uangMasuk;
+        //     this.hargaBarang = hargaBarang;
+        //     this.uangKembalian = this.uangMasuk - this.hargaBarang;
+        //     let uangNya = [];
+        //     myMoney.sort(function(a, b){return b-a});
+        //     myMoney.map(function(v){
+
+        //         this.exUangKembalian = this.uangKembalian % v;
+        //         let a = (this.uangKembalian - this.exUangKembalian) / v;
+        //         console.log(this.uangKembalian +'-'+ v + '-' + this.exUangKembalian);
+
+        //         let datab = dataa % 50000;
+        //         let b = (dataa - datab) / 50000;
+
+        //         let datac = datab % 20000;
+        //         let c = (datab - datac) / 20000;
+
+        //         let datad = datac % 5000;
+        //         let d = (datac - datad) / 5000;
+                
+        //         let datae = datad % 100;
+        //         let e = (datad - datae) / 100;
+
+        //         let dataf = datae % 50;
+        //         let f = (datae - dataf) / 50;
+                
+        //     });
+        //     let kembalian = { 
+        //                         'uangKembalian' : this.uangMasuk - this.hargaBarang,
+        //                         'jenisUang' : uangNya
+        //                     };                
+        //     return kembalian;
+        // }
+
+        const btnSearch = document.querySelector(".proses-bottom");
+        btnSearch.addEventListener("click", function(){
+            
+            const pembayaran = document.querySelector('.pembayaran').value;
+            const hargaBarang = document.querySelector('.hargaBarang').value;
+            const kembalian = pembayaran - hargaBarang;
+
+            let dataa = kembalian % 100000; 
+            let a = (kembalian - dataa) / 100000;
+
+            let datab = dataa % 50000;
+            let b = (dataa - datab) / 50000;
+
+            let datac = datab % 20000;
+            let c = (datab - datac) / 20000;
+
+            let datad = datac % 10000;
+            let d = (datac - datad) / 10000;
+            
+            let datae = datad % 5000;
+            let e = (datad - datae) / 5000;
+
+            let dataf = datae % 2000;
+            let f = (datae - dataf) / 2000;
+
+            let datag = dataf % 1000;
+            let g = (dataf - datag) / 1000;
+            
+            let datah = datag % 500;
+            let h = (datag - datah) / 500;
+
+            let datai = datah % 200;
+            let i = (datah - datai) / 200;
+
+            let dataj = datai % 100;
+            let j = (datai - dataj) / 100;
+
+            let datak = dataj % 50;
+            let k = (dataj - datak) / 50;
+
+            document.querySelector('.tabelKembalian').innerHTML = `
+                <ul>Kembaliannya Adalah: ${kembalian}
+                    <li>Rp. 100.000: <span class="1">${a}</li>
+                    <li>Rp.  50.000: <span class="2">${b}</li>
+                    <li>Rp.  20.000: <span class="3">${c}</li>
+                    <li>Rp.  10.000: <span class="4">${d}</li>
+                    <li>Rp.   5.000: <span class="5">${e}</li>
+                    <li>Rp.   2.000: <span class="6">${f}</li>
+                    <li>Rp.   1.000: <span class="7">${g}</li>
+                    <li>Rp.     500: <span class="7">${h}</li>
+                    <li>Rp.     200: <span class="7">${i}</li>
+                    <li>Rp.     100: <span class="7">${j}</li>
+                    <li>Rp.      50: <span class="7">${k}</li>
+                </ul>`;
+        });
+    </script>
+</body>
+</html>

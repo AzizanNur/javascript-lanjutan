@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>race condition</title>
+</head>
+<body>
+
+<script>
+    let myBook = 1;
+    const order = ((idCust, cb) => {
+        setTimeout(() => {
+            this.myBook = myBook-1;
+            myBook = this.myBook;
+            cb({myBook});
+        }, Math.random() * 1500);                    
+    })
+
+    const hasilOrder = (idCust, stok ) => {
+        let hasil = `Customer ${idCust} menang`;
+        if(stok < 0){
+            hasil = `Customer ${idCust} kalah`;
+        }
+        return hasil+` stok sekarang ${stok}`;
+    }
+
+    const customer_1 = order(1, (hasil) => {
+        console.log(hasilOrder(1, hasil.myBook));
+    });
+    const customer_2 = order(2, (hasil) => {        
+        console.log(hasilOrder(2, hasil.myBook));
+    });
+    
+</script>
+
+</body>
+</html>
